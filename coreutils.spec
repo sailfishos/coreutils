@@ -12,8 +12,6 @@ Source101:  coreutils-DIR_COLORS
 Source102:  coreutils-DIR_COLORS.xterm
 Source105:  coreutils-colorls.sh
 Source106:  coreutils-colorls.csh
-Source200:  coreutils-su.pamd
-Source202:  coreutils-su-l.pamd
 
 # From upstream
 Patch1: coreutils-futimens.patch
@@ -45,11 +43,6 @@ Patch916: coreutils-getfacl-exit-code.patch
 
 Patch1001: mktemp-1.5-build.patch
 
-#SELINUX Patch
-#Patch950: coreutils-selinux.patch
-#SELINUX Patch fix to allow cp -a rewrite file on different filesystem
-#Patch951: coreutils-6.9-requiresecuritycontext.patch
-
 BuildRequires: libacl-devel
 BuildRequires: gettext bison
 BuildRequires: texinfo >= 4.3
@@ -73,6 +66,9 @@ Obsoletes: textutils <= 2.0.21
 
 # readlink(1) moved here from tetex.
 Conflicts: tetex < 1.0.7-66
+
+# su moved to util-linux in 2.22.2
+Conflicts: util-linux < 2.22.2
 
 %description
 These are the GNU core utilities.  This package is the combination of
@@ -106,10 +102,6 @@ the old GNU fileutils, sh-utils, and textutils packages.
 %patch912 -p1 -b .overflow
 %patch915 -p1 -b .splitl
 %patch916 -p1 -b .getfacl-exit-code
-
-#SELinux
-#%patch950 -p1 -b .selinux
-#%patch951 -p1 -b .require-preserve
 
 # Don't run basic-1 test, since it breaks when run in the background
 # (bug #102033).
@@ -145,7 +137,6 @@ make all \
 # XXX docs should say /var/run/[uw]tmp not /etc/[uw]tmp
 sed -i -e 's,/etc/utmp,/var/run/utmp,g;s,/etc/wtmp,/var/run/wtmp,g' doc/coreutils.texi
 
-
 %check
 #make check
 
@@ -155,8 +146,6 @@ rm -rf $RPM_BUILD_ROOT
 pushd ../mktemp-1.5
 make bindir=$RPM_BUILD_ROOT/bin mandir=$RPM_BUILD_ROOT/usr/share/man install 
 popd
-
-
 
 make DESTDIR=$RPM_BUILD_ROOT install
 
@@ -192,19 +181,10 @@ install -p -c -m644 %SOURCE102 $RPM_BUILD_ROOT%{_sysconfdir}/DIR_COLORS.xterm
 install -p -c -m644 %SOURCE105 $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -m644 %SOURCE106 $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/colorls.csh
 
-# su
-install -m 4755 src/su $RPM_BUILD_ROOT/bin
-#install -m 755 src/runuser $RPM_BUILD_ROOT/sbin
-
 # These come from util-linux and/or procps.
 for i in hostname uptime kill ; do
     rm $RPM_BUILD_ROOT{%_bindir/$i,%_mandir/man1/$i.1}
 done
-
-%{?!nopam:install -p -m 644 %SOURCE200 $RPM_BUILD_ROOT%_sysconfdir/pam.d/su}
-%{?!nopam:install -p -m 644 %SOURCE202 $RPM_BUILD_ROOT%_sysconfdir/pam.d/su-l}
-#%{?!nopam:install -p -m 644 %SOURCE201 $RPM_BUILD_ROOT%_sysconfdir/pam.d/runuser}
-#%{?!nopam:install -p -m 644 %SOURCE203 $RPM_BUILD_ROOT%_sysconfdir/pam.d/runuser-l}
 
 # Compress ChangeLogs from before the fileutils/textutils/etc merge
 bzip2 -f9 old/*/C*
@@ -223,22 +203,14 @@ find %{buildroot}%{_datadir}/locale -type l | \
 # (sb) Deal with Installed (but unpackaged) file(s) found
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %lang_package
 
 %docs_package
-
-
 
 %files 
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/DIR_COLORS*
 %{_sysconfdir}/profile.d/*
-%{?!nopam:%config(noreplace) %{_sysconfdir}/pam.d/su}
-%{?!nopam:%config(noreplace) %{_sysconfdir}/pam.d/su-l}
 %doc COPYING 
 /bin/basename
 /bin/cat
@@ -266,7 +238,6 @@ rm -rf $RPM_BUILD_ROOT
 /bin/sleep
 /bin/sort
 /bin/stty
-%attr(4755,root,root) /bin/su
 /bin/sync
 /bin/touch
 /bin/true
@@ -275,5 +246,4 @@ rm -rf $RPM_BUILD_ROOT
 /bin/mktemp
 %_bindir/*
 %_sbindir/chroot
-#/sbin/runuser
 

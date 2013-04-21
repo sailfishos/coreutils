@@ -1,3 +1,9 @@
+* Sat Apr 20 2013 Marko Saukko <marko.saukko@jollamobile.com> - 6.9
+- Drop su as it is now part of util-linux
+- Cleanup packaging a bit
+- Drop unused patches:
+  coreutils-selinux.patch, coreutils-6.9-requiresecuritycontext.patch
+
 * Sun May 22 2011 Anas Nashif <anas.nashif@intel.com> - 6.9
 - Split docs and translations
 
