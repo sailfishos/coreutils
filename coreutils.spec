@@ -42,6 +42,7 @@ Patch915: coreutils-split-pam.patch
 Patch916: coreutils-getfacl-exit-code.patch
 
 Patch1001: mktemp-1.5-build.patch
+Patch1002: coreutils-aarch64.patch
 
 BuildRequires: libacl-devel
 BuildRequires: gettext bison
@@ -102,6 +103,7 @@ the old GNU fileutils, sh-utils, and textutils packages.
 %patch912 -p1 -b .overflow
 %patch915 -p1 -b .splitl
 %patch916 -p1 -b .getfacl-exit-code
+%patch1002 -p1
 
 # Don't run basic-1 test, since it breaks when run in the background
 # (bug #102033).
@@ -111,6 +113,8 @@ chmod a+x tests/sort/sort-mb-tests
 chmod a+x tests/ls/x-option
 
 %build
+cp build-aux/config.sub ../mktemp-1.5
+
 pushd ../mktemp-1.5
 patch -p1 < %{PATCH1001}
 %configure
