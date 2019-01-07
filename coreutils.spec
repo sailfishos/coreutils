@@ -1,7 +1,7 @@
 Summary: The GNU core utilities: a set of tools commonly used in shell scripts
 Name:    coreutils
 Version: 6.9
-Release: 9
+Release: 10
 License: GPLv2+
 Epoch: 1
 Group:   System Environment/Base
@@ -74,6 +74,15 @@ Conflicts: util-linux < 2.22.2
 %description
 These are the GNU core utilities.  This package is the combination of
 the old GNU fileutils, sh-utils, and textutils packages.
+
+%package doc
+Summary:   Documentation for %{name}
+Group:     Documentation
+Requires:  %{name} = %{version}-%{release}
+Obsoletes: %{name}-docs
+
+%description doc
+Man and info pages for %{name}.
 
 %prep
 %setup -q -b 1
@@ -207,15 +216,20 @@ find %{buildroot}%{_datadir}/locale -type l | \
 # (sb) Deal with Installed (but unpackaged) file(s) found
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
-%lang_package
+# Documentation
+mkdir -p $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+install -m0644 -t $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} \
+        AUTHORS ChangeLog.bz2 ChangeLog-2005 NEWS README \
+        THANKS THANKS-to-translators TODO
+cp -r old/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
-%docs_package
+%lang_package
 
 %files 
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/DIR_COLORS*
 %{_sysconfdir}/profile.d/*
-%doc COPYING 
+%license COPYING
 /bin/basename
 /bin/cat
 /bin/chgrp
@@ -251,3 +265,8 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 %_bindir/*
 %_sbindir/chroot
 
+%files doc
+%defattr(-,root,root,-)
+%{_infodir}/coreutils.info.gz
+%{_mandir}/man1/*
+%{_docdir}/%{name}-%{version}
