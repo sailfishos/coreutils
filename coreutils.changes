@@ -359,7 +359,7 @@
 * Mon Mar 26 2007 Tim Waugh <twaugh@redhat.com> - 6.9-1
 - 6.9.
 
-* Fri Mar  9 2007 Tim Waugh <twaugh@redhat.com>
+* Fri Mar  9 2007 Tim Waugh <twaugh@redhat.com> - 6.8-2
 - Better install-info scriptlets (bug #225655).
 
 * Thu Mar  1 2007 Tim Waugh <twaugh@redhat.com> - 6.8-1
