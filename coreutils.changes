@@ -412,7 +412,7 @@
 - 6.7.  No longer need sort-compatibility, rename, newhashes, timestyle,
   acl, df-cifs, afs or autoconf patches.
 
-* Tue Jan  2 2007 Tim Waugh <twaugh@redhat.com>
+* Tue Jan  2 2007 Tim Waugh <twaugh@redhat.com> - 5.97-17
 - Prevent 'su --help' showing runuser-only options such as --group.
 
 * Fri Nov 24 2006 Tim Waugh <twaugh@redhat.com> - 5.97-16
@@ -476,7 +476,7 @@
 - Include new hashes (bug #196369).  Patch from upstream.
 - Build at -O1 on s390 for the moment (bug #196369).
 
-* Fri Jun  9 2006 Tim Waugh <twaugh@redhat.com>
+* Fri Jun  9 2006 Tim Waugh <twaugh@redhat.com> - 5.96-3
 - Fix large file support for temporary files.
 
 * Mon Jun  5 2006 Tim Waugh <twaugh@redhat.com> - 5.96-3
@@ -485,14 +485,14 @@
 * Mon May 22 2006 Tim Waugh <twaugh@redhat.com> - 5.96-2
 - 5.96.  No longer need proc patch.
 
-* Fri May 19 2006 Tim Waugh <twaugh@redhat.com>
+* Fri May 19 2006 Tim Waugh <twaugh@redhat.com> - 5.96-1
 - Fixed pr properly in multibyte locales (bug #192381).
 
 * Tue May 16 2006 Tim Waugh <twaugh@redhat.com> - 5.95-3
 - Upstream patch to fix cp -p when proc is not mounted (bug #190601).
 - BuildRequires libacl-devel.
 
-* Mon May 15 2006 Tim Waugh <twaugh@redhat.com>
+* Mon May 15 2006 Tim Waugh <twaugh@redhat.com> - 5.95-2
 - Fixed pr in multibyte locales (bug #189663).
 
 * Mon May 15 2006 Tim Waugh <twaugh@redhat.com> - 5.95-2
@@ -514,7 +514,7 @@
 * Tue Feb 07 2006 Jesse Keating <jkeating@redhat.com> - 5.93-7.1
 - rebuilt for new gcc4.1 snapshot and glibc changes
 
-* Mon Jan 23 2006 Tim Waugh <twaugh@redhat.com>
+* Mon Jan 23 2006 Tim Waugh <twaugh@redhat.com> - 5.93-7
 - Fixed chcon(1) bug reporting address (bug #178523).
 
 * Thu Jan  5 2006 Tim Waugh <twaugh@redhat.com> - 5.93-7
@@ -527,13 +527,13 @@
 * Fri Dec 23 2005 Tim Waugh <twaugh@redhat.com> - 5.93-5
 - Fix "sort -n" (bug #176468).
 
-* Fri Dec 16 2005 Tim Waugh <twaugh@redhat.com>
+* Fri Dec 16 2005 Tim Waugh <twaugh@redhat.com> - 5.93-4
 - Explicitly set default POSIX2 version during configure stage.
 
-* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com>
+* Fri Dec 09 2005 Jesse Keating <jkeating@redhat.com> - 5.93-4
 - rebuilt
 
-* Fri Dec  2 2005 Tim Waugh <twaugh@redhat.com>
+* Fri Dec  2 2005 Tim Waugh <twaugh@redhat.com> - 5.93-4
 - Parametrize SELinux (bug #174067).
 - Fix runuser.pamd (bug #173807).
 
@@ -581,7 +581,7 @@
 - Allow id to run even when SELinux security context can not be run
 - Change chcon to use raw functions.
 
-* Tue Jun 28 2005 Tim Waugh <twaugh@redhat.com>
+* Tue Jun 28 2005 Tim Waugh <twaugh@redhat.com> - 5.2.1-52
 - Corrected comments in DIR_COLORS.xterm (bug #161711).
 
 * Wed Jun 22 2005 Tim Waugh <twaugh@redhat.com> - 5.2.1-52
@@ -609,7 +609,7 @@
 * Mon May 16 2005 Tim Waugh <twaugh@redhat.com> - 5.2.1-45
 - Applied Russell Coker's selinux changes (bug #157856).
 
-* Fri Apr  8 2005 Tim Waugh <twaugh@redhat.com>
+* Fri Apr  8 2005 Tim Waugh <twaugh@redhat.com> - 5.2.1-44
 - Fixed pam patch from Steve Grubb (bug #154946).
 - Use better upstream patch for "stale utmp".
 
@@ -642,7 +642,7 @@
 * Mon Dec 27 2004 Dan Walsh <dwalsh@redhat.com> - 5.2.1-35
 - Change install to restorecon if it can
 
-* Wed Dec 15 2004 Tim Waugh <twaugh@redhat.com>
+* Wed Dec 15 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-35
 - Fixed small bug in i18n patch.
 
 * Mon Dec  6 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-34
@@ -651,13 +651,13 @@
 * Thu Nov 25 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-33
 - Fixed colorls.csh (bug #139988).  Patch from Miloslav Trmac.
 
-* Mon Nov  8 2004 Tim Waugh <twaugh@redhat.com>
+* Mon Nov  8 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-33
 - Updated URL (bug #138279).
 
 * Mon Oct 25 2004 Steve Grubb <sgrubb@redhat.com> - 5.2.1-32
 - Handle the return code of function calls in runcon.
 
-* Mon Oct 18 2004 Tim Waugh <twaugh@redhat.com>
+* Mon Oct 18 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-32
 - Prevent compiler warning in coreutils-i18n.patch (bug #136090).
 
 * Tue Oct  5 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-31
@@ -670,7 +670,7 @@
 * Mon Oct  4 2004 Dan Walsh <dwalsh@redhat.com> - 5.2.1-28
 - Fix runuser man page.
 
-* Mon Oct  4 2004 Tim Waugh <twaugh@redhat.com>
+* Mon Oct  4 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-27
 - Fixed build.
 
 * Fri Sep 24 2004 Dan Walsh <dwalsh@redhat.com> - 5.2.1-26
@@ -703,26 +703,26 @@
 - Worked around a bash bug #129128.
 - Fixed an i18n patch bug in cut (bug #129114).
 
-* Tue Aug  3 2004 Tim Waugh <twaugh@redhat.com>
+* Tue Aug  3 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-18
 - Fixed colorls.{sh,csh} so that the l. and ll aliases are always defined
   (bug #128948).
 
 * Tue Jul 13 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-18
 - Fixed field extraction in sort (bug #127694).
 
-* Fri Jun 25 2004 Tim Waugh <twaugh@redhat.com>
+* Fri Jun 25 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-17
 - Added 'TERM screen.linux' to DIR_COLORS (bug #78816).
 
 * Wed Jun 23 2004 Dan Walsh <dwalsh@redhat.com> - 5.2.1-17
 - Move pam-xauth to after pam-selinux
 
-* Tue Jun 15 2004 Elliot Lee <sopwith@redhat.com>
+* Tue Jun 15 2004 Elliot Lee <sopwith@redhat.com> - 5.2.1-16
 - rebuilt
 
 * Mon Jun  7 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-15
 - Fix ls -Z (bug #125447).
 
-* Fri Jun  4 2004 Tim Waugh <twaugh@redhat.com>
+* Fri Jun  4 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-14
 - Build requires bison (bug #125290).
 
 * Fri Jun  4 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-14
@@ -749,7 +749,7 @@
 * Mon May 17 2004 Thomas Woerner <twoerner@redhat.com> - 5.2.1-8
 - compiling su PIE
 
-* Wed May 12 2004 Tim Waugh <twaugh@redhat.com>
+* Wed May 12 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-7
 - Build requires new versions of autoconf and automake (bug #123098).
 
 * Tue May  4 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-7
@@ -762,7 +762,7 @@
 - Add ls -LZ fix
 - Fix chcon to handle "."
 
-* Wed Mar 17 2004 Tim Waugh <twaugh@redhat.com>
+* Wed Mar 17 2004 Tim Waugh <twaugh@redhat.com> - 5.2.1-4
 - Apply upstream fix for non-zero seconds for --date="10:00 +0100".
 
 * Tue Mar 16 2004 Dan Walsh <dwalsh@redhat.com> - 5.2.1-3
@@ -777,7 +777,7 @@
 * Fri Mar 12 2004 Tim Waugh <twaugh@redhat.com> - 5.2.0-9
 - Add '-Z' to 'ls --help' output (bug #118108).
 
-* Fri Mar  5 2004 Tim Waugh <twaugh@redhat.com>
+* Fri Mar  5 2004 Tim Waugh <twaugh@redhat.com> - 5.2.0-9
 - Fix deref-args test case for rebuilding under SELinux (bug #117556).
 
 * Wed Feb 25 2004 Tim Waugh <twaugh@redhat.com> - 5.2.0-8
@@ -806,13 +806,13 @@
 - Patch ls so that failed stat() is handled gracefully (Ulrich Drepper).
 - 5.2.0.
 
-* Thu Feb 19 2004 Tim Waugh <twaugh@redhat.com>
+* Thu Feb 19 2004 Tim Waugh <twaugh@redhat.com> - 5.1.3-1
 - More AFS patch tidying.
 
 * Wed Feb 18 2004 Dan Walsh <dwalsh@redhat.com> - 5.1.3-0.2
 - fix chcon to handle -h qualifier properly, eliminate potential crash 
 
-* Wed Feb 18 2004 Tim Waugh <twaugh@redhat.com>
+* Wed Feb 18 2004 Tim Waugh <twaugh@redhat.com> - 5.1.3.0.1
 - Stop 'sort -g' leaking memory (i18n patch bug #115620).
 - Don't ship kill, since util-linux already does.
 - Tidy AFS patch.
@@ -833,7 +833,7 @@
 * Tue Jan  20 2004 Dan Walsh <dwalsh@redhat.com> - 5.0-37
 - Add pam_selinux to pam file to allow switching of roles within selinux
 
-* Fri Jan 16 2004 Tim Waugh <twaugh@redhat.com>
+* Fri Jan 16 2004 Tim Waugh <twaugh@redhat.com> - 5.0-36
 - The textutils-2.0.17-mem.patch is no longer needed.
 
 * Thu Jan 15 2004 Tim Waugh <twaugh@redhat.com> - 5.0-36
@@ -876,7 +876,7 @@
 * Mon Oct 13 2003 Dan Walsh <dwalsh@redhat.com> - 5.0-26.sel
 - Turn on SELinux
 
-* Sun Oct 12 2003 Florian La Roche <Florian.LaRoche@redhat.de>
+* Sun Oct 12 2003 Florian La Roche <Florian.LaRoche@redhat.de> - 5.0-24
 - allow compiling without pam support
 
 * Fri Oct 10 2003 Tim Waugh <twaugh@redhat.com> - 5.0-23
@@ -923,7 +923,7 @@
 - Internationalize runcon
 - Update latest chcon from NSA
 
-* Wed Jul 30 2003 Tim Waugh <twaugh@redhat.com>
+* Wed Jul 30 2003 Tim Waugh <twaugh@redhat.com> - 5.0-10
 - Re-enable make check.
 
 * Wed Jul 30 2003 Tim Waugh <twaugh@redhat.com> - 5.0-9
@@ -935,10 +935,10 @@
 * Fri Jul 18 2003 Dan Walsh <dwalsh@redhat.com> - 5.0-7
 - Convert to SELinux
 
-* Mon Jun  9 2003 Tim Waugh <twaugh@redhat.com>
+* Mon Jun  9 2003 Tim Waugh <twaugh@redhat.com> - 5.0-6
 - Removed samefile patch.  Now the test suite passes.
 
-* Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
+* Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com> - 5.0-6
 - rebuilt
 
 * Wed May 28 2003 Tim Waugh <twaugh@redhat.com> - 5.0-5
@@ -952,7 +952,7 @@
 * Wed Apr 30 2003 Tim Waugh <twaugh@redhat.com> - 5.0-3
 - Allow obsolete options unless POSIXLY_CORRECT is set.
 
-* Sat Apr 12 2003 Tim Waugh <twaugh@redhat.com>
+* Sat Apr 12 2003 Tim Waugh <twaugh@redhat.com> - 5.0-3
 - Fold bug was introduced by i18n patch; fixed there instead.
 
 * Fri Apr 11 2003 Matt Wilson <msw@redhat.com> - 5.0-2
@@ -961,14 +961,14 @@
 * Sat Apr  5 2003 Tim Waugh <twaugh@redhat.com> - 5.0-1
 - 5.0.
 
-* Mon Mar 24 2003 Tim Waugh <twaugh@redhat.com>
+* Mon Mar 24 2003 Tim Waugh <twaugh@redhat.com> - 4.5.11-3
 - Use _smp_mflags.
 
 * Mon Mar 24 2003 Tim Waugh <twaugh@redhat.com> - 4.5.11-2
 - Remove overwrite patch.
 - No longer seem to need nolibrt, errno patches.
 
-* Thu Mar 20 2003 Tim Waugh <twaugh@redhat.com>
+* Thu Mar 20 2003 Tim Waugh <twaugh@redhat.com> - 4.5.11-1
 - No longer seem to need danglinglink, prompt, lug, touch_errno patches.
 
 * Thu Mar 20 2003 Tim Waugh <twaugh@redhat.com> - 4.5.11-1
@@ -1001,7 +1001,7 @@
 * Wed Jan 22 2003 Tim Powers <timp@redhat.com> - 4.5.3-14
 - rebuilt
 
-* Thu Jan 16 2003 Tim Waugh <twaugh@redhat.com>
+* Thu Jan 16 2003 Tim Waugh <twaugh@redhat.com> - 4.5.3-13
 - Fix rm(1) man page.
 
 * Thu Jan 16 2003 Tim Waugh <twaugh@redhat.com> - 4.5.3-13
@@ -1017,7 +1017,7 @@
 * Mon Dec 16 2002 Tim Powers <timp@redhat.com> - 4.5.3-9
 - added PreReq on grep
 
-* Fri Dec 13 2002 Tim Waugh <twaugh@redhat.com>
+* Fri Dec 13 2002 Tim Waugh <twaugh@redhat.com> - 4.5.3-8
 - Fix cp --preserve with multiple arguments.
 
 * Thu Dec 12 2002 Tim Waugh <twaugh@redhat.com> - 4.5.3-8
