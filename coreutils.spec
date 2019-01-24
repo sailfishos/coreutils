@@ -43,6 +43,8 @@ Patch916: coreutils-getfacl-exit-code.patch
 
 Patch1001: mktemp-1.5-build.patch
 Patch1002: coreutils-aarch64.patch
+Patch1003: mktemp-1.5-large-file.patch
+Patch1004: coreutils-large-file.patch
 
 BuildRequires: libacl-devel
 BuildRequires: gettext bison
@@ -113,6 +115,7 @@ Man and info pages for %{name}.
 %patch915 -p1 -b .splitl
 %patch916 -p1 -b .getfacl-exit-code
 %patch1002 -p1
+%patch1004 -p1
 
 # Don't run basic-1 test, since it breaks when run in the background
 # (bug #102033).
@@ -126,6 +129,7 @@ cp build-aux/config.sub ../mktemp-1.5
 
 pushd ../mktemp-1.5
 patch -p1 < %{PATCH1001}
+patch -p1 < %{PATCH1003}
 %configure
 make
 popd
