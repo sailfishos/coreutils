@@ -1,3 +1,6 @@
+* Fri Jan 25 2019 Matti Kosola <matti.kosola@jolla.com> - 6.9-11
+- [coreutils] Add large-file support. JB#44579
+
 * Thu Jan 03 2019 Tomi Leppänen <tomi.leppanen@jolla.com> - 6.9-10
 - [packaging] Rename coreutils-docs to coreutils-doc. Contributes to JB#38578
 
