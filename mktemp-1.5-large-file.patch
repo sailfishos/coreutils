@@ -1,0 +1,10 @@
+--- mktemp-1.5/Makefile.in.orig	2019-01-24 09:32:57.765705894 -0500
++++ mktemp-1.5/Makefile.in	2019-01-24 09:33:49.539774295 -0500
+@@ -54,6 +54,7 @@
+ 
+ # C preprocessor flags
+ CPPFLAGS = -I$(srcdir) -I. "-DMKTEMP_VERSION=\"$(VERSION)\"" @CPPFLAGS@
++CPPFLAGS += -D_FILE_OFFSET_BITS=64
+ 
+ # Usually -O and/or -g
+ CFLAGS = @CFLAGS@
