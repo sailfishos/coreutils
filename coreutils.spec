@@ -122,20 +122,17 @@ chmod a+x tests/sort/sort-mb-tests
 chmod a+x tests/ls/x-option
 
 %build
+original_RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 cp build-aux/config.sub ../mktemp-1.5
 
+export CFLAGS="$original_RPM_OPT_FLAGS -D_FILE_OFFSET_BITS=64"
 pushd ../mktemp-1.5
 patch -p1 < %{PATCH1001}
 %configure
 make
 popd
 
-%ifarch s390 s390x
-# Build at -O1 for the moment (bug #196369).
-export CFLAGS="$RPM_OPT_FLAGS -fPIC -O1"
-%else
-export CFLAGS="$RPM_OPT_FLAGS -fpic"
-%endif
+export CFLAGS="$original_RPM_OPT_FLAGS -fpic -D_FILE_OFFSET_BITS=64"
 %{expand:%%global optflags %{optflags} -D_GNU_SOURCE=1}
 #touch aclocal.m4 configure config.hin Makefile.in */Makefile.in */*/Makefile.in
 #aclocal -I m4
