@@ -1,7 +1,7 @@
 Summary: The GNU core utilities: a set of tools commonly used in shell scripts
 Name:    coreutils
 Version: 6.9
-Release: 11
+Release: 12
 License: GPLv2+
 Epoch: 1
 Group:   System Environment/Base
@@ -43,8 +43,6 @@ Patch916: coreutils-getfacl-exit-code.patch
 
 Patch1001: mktemp-1.5-build.patch
 Patch1002: coreutils-aarch64.patch
-Patch1003: mktemp-1.5-large-file.patch
-Patch1004: coreutils-large-file.patch
 
 BuildRequires: libacl-devel
 BuildRequires: gettext bison
@@ -115,7 +113,6 @@ Man and info pages for %{name}.
 %patch915 -p1 -b .splitl
 %patch916 -p1 -b .getfacl-exit-code
 %patch1002 -p1
-%patch1004 -p1
 
 # Don't run basic-1 test, since it breaks when run in the background
 # (bug #102033).
@@ -125,21 +122,17 @@ chmod a+x tests/sort/sort-mb-tests
 chmod a+x tests/ls/x-option
 
 %build
+original_RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 cp build-aux/config.sub ../mktemp-1.5
 
+export CFLAGS="$original_RPM_OPT_FLAGS -D_FILE_OFFSET_BITS=64"
 pushd ../mktemp-1.5
 patch -p1 < %{PATCH1001}
-patch -p1 < %{PATCH1003}
 %configure
 make
 popd
 
-%ifarch s390 s390x
-# Build at -O1 for the moment (bug #196369).
-export CFLAGS="$RPM_OPT_FLAGS -fPIC -O1"
-%else
-export CFLAGS="$RPM_OPT_FLAGS -fpic"
-%endif
+export CFLAGS="$original_RPM_OPT_FLAGS -fpic -D_FILE_OFFSET_BITS=64"
 %{expand:%%global optflags %{optflags} -D_GNU_SOURCE=1}
 #touch aclocal.m4 configure config.hin Makefile.in */Makefile.in */*/Makefile.in
 #aclocal -I m4

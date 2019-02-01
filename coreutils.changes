@@ -1,3 +1,7 @@
+* Fri Feb 01 2019 Juho Hämäläinen <juho.hamalainen@jolla.com> - 6.9-12
+- [coreutils] Revert Add large-file support.
+- [coreutils] Add large file support to CFLAGS. JB#44579
+
 * Fri Jan 25 2019 Matti Kosola <matti.kosola@jolla.com> - 6.9-11
 - [coreutils] Add large-file support. JB#44579
 
