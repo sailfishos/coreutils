@@ -47,7 +47,7 @@ Patch1002: coreutils-aarch64.patch
 BuildRequires: libacl-devel
 BuildRequires: gettext bison
 BuildRequires: texinfo >= 4.3
-BuildRequires: autoconf >= 2.58, automake >= 1.10, cvs
+BuildRequires: autoconf >= 2.58, automake >= 1.10
 %{?!nopam:BuildRequires: pam-devel}
 
 %{?!nopam:Requires: pam >= 0.66-12}
