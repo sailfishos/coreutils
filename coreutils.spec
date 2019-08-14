@@ -69,7 +69,10 @@ Obsoletes: textutils <= 2.0.21
 Conflicts: tetex < 1.0.7-66
 
 # su moved to util-linux in 2.22.2
-Conflicts: util-linux < 2.22.2
+Requires: util-linux >= 2.22.2
+
+# require usr merged filesystem
+Requires: filesystem >= 3.2
 
 %description
 These are the GNU core utilities.  This package is the combination of
@@ -128,6 +131,7 @@ cp build-aux/config.sub ../mktemp-1.5
 export CFLAGS="$original_RPM_OPT_FLAGS -D_FILE_OFFSET_BITS=64"
 pushd ../mktemp-1.5
 patch -p1 < %{PATCH1001}
+
 %configure
 make
 popd
@@ -154,7 +158,7 @@ sed -i -e 's,/etc/utmp,/var/run/utmp,g;s,/etc/wtmp,/var/run/wtmp,g' doc/coreutil
 rm -rf $RPM_BUILD_ROOT
 
 pushd ../mktemp-1.5
-make bindir=$RPM_BUILD_ROOT/bin mandir=$RPM_BUILD_ROOT/usr/share/man install 
+make bindir=$RPM_BUILD_ROOT%{_bindir} mandir=$RPM_BUILD_ROOT/usr/share/man install 
 popd
 
 make DESTDIR=$RPM_BUILD_ROOT install
@@ -172,18 +176,12 @@ fi
 
 bzip2 -9f ChangeLog
 
-# let be compatible with old fileutils, sh-utils and textutils packages :
-mkdir -p $RPM_BUILD_ROOT{/bin,%_bindir,%_sbindir,/sbin}
+mkdir -p $RPM_BUILD_ROOT{%{_bindir},%{_sbindir}}
 %{?!nopam:mkdir -p $RPM_BUILD_ROOT%_sysconfdir/pam.d}
-for f in basename cat chgrp chmod chown cp cut date dd df echo env false link ln ls mkdir mknod mv nice pwd rm rmdir sleep sort stty sync touch true uname unlink
-do
-    mv $RPM_BUILD_ROOT{%_bindir,/bin}/$f 
-done
+
 
 # chroot was in /usr/sbin :
 mv $RPM_BUILD_ROOT{%_bindir,%_sbindir}/chroot
-# {cat,sort,cut} were previously moved from bin to /usr/bin and linked into 
-for i in env cut; do ln -sf ../../bin/$i $RPM_BUILD_ROOT/usr/bin; done
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/profile.d
 install -p -c -m644 %SOURCE101 $RPM_BUILD_ROOT%{_sysconfdir}/DIR_COLORS
@@ -192,8 +190,8 @@ install -p -c -m644 %SOURCE105 $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/colorls.s
 install -p -c -m644 %SOURCE106 $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/colorls.csh
 
 # These come from util-linux and/or procps.
-for i in hostname uptime kill ; do
-    rm $RPM_BUILD_ROOT{%_bindir/$i,%_mandir/man1/$i.1}
+for i in hostname uptime kill su ; do
+    rm -f $RPM_BUILD_ROOT{%_bindir/$i,%_mandir/man1/$i.1}
 done
 
 # Compress ChangeLogs from before the fileutils/textutils/etc merge
@@ -227,40 +225,99 @@ cp -r old/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 %config(noreplace) %{_sysconfdir}/DIR_COLORS*
 %{_sysconfdir}/profile.d/*
 %license COPYING
-/bin/basename
-/bin/cat
-/bin/chgrp
-/bin/chmod
-/bin/chown
-/bin/cp
-/bin/cut
-/bin/date
-/bin/dd
-/bin/df
-/bin/echo
-/bin/env
-/bin/false
-/bin/link
-/bin/ln
-/bin/ls
-/bin/mkdir
-/bin/mknod
-/bin/mv
-/bin/nice
-/bin/pwd
-/bin/rm
-/bin/rmdir
-/bin/sleep
-/bin/sort
-/bin/stty
-/bin/sync
-/bin/touch
-/bin/true
-/bin/uname
-/bin/unlink
-/bin/mktemp
-%_bindir/*
-%_sbindir/chroot
+%{_bindir}/basename
+%{_bindir}/cat
+%{_bindir}/chgrp
+%{_bindir}/chmod
+%{_bindir}/chown
+%{_bindir}/cp
+%{_bindir}/cut
+%{_bindir}/date
+%{_bindir}/dd
+%{_bindir}/df
+%{_bindir}/echo
+%{_bindir}/false
+%{_bindir}/link
+%{_bindir}/ln
+%{_bindir}/ls
+%{_bindir}/mkdir
+%{_bindir}/mknod
+%{_bindir}/mktemp
+%{_bindir}/mv
+%{_bindir}/nice
+%{_bindir}/pwd
+%{_bindir}/rm
+%{_bindir}/rmdir
+%{_bindir}/sleep
+%{_bindir}/sort
+%{_bindir}/stty
+%{_bindir}/sync
+%{_bindir}/touch
+%{_bindir}/true
+%{_bindir}/uname
+%{_bindir}/unlink
+%{_bindir}/base64
+%{_bindir}/cksum
+%{_bindir}/comm
+%{_bindir}/csplit
+%{_bindir}/dir
+%{_bindir}/dircolors
+%{_bindir}/dirname
+%{_bindir}/du
+%{_bindir}/env
+%{_bindir}/expand
+%{_bindir}/expr
+%{_bindir}/factor
+%{_bindir}/fmt
+%{_bindir}/fold
+%{_bindir}/groups
+%{_bindir}/head
+%{_bindir}/hostid
+%{_bindir}/id
+%{_bindir}/install
+%{_bindir}/join
+%{_bindir}/logname
+%{_bindir}/md5sum
+%{_bindir}/mkfifo
+%{_bindir}/nl
+%{_bindir}/nohup
+%{_bindir}/od
+%{_bindir}/paste
+%{_bindir}/pathchk
+%{_bindir}/pinky
+%{_bindir}/pr
+%{_bindir}/printenv
+%{_bindir}/printf
+%{_bindir}/ptx
+%{_bindir}/readlink
+%{_bindir}/seq
+%{_bindir}/sha1sum
+%{_bindir}/sha224sum
+%{_bindir}/sha256sum
+%{_bindir}/sha384sum
+%{_bindir}/sha512sum
+%{_bindir}/[
+%{_bindir}/shred
+%{_bindir}/shuf
+%{_bindir}/split
+%{_bindir}/stat
+%{_bindir}/sum
+%{_bindir}/tac
+%{_bindir}/tail
+%{_bindir}/tee
+%{_bindir}/test
+%{_bindir}/tr
+%{_bindir}/tsort
+%{_bindir}/tty
+%{_bindir}/unexpand
+%{_bindir}/uniq
+%{_bindir}/users
+%{_bindir}/vdir
+%{_bindir}/wc
+%{_bindir}/who
+%{_bindir}/whoami
+%{_bindir}/yes
+%{_sbindir}/chroot
 
 %files doc
 %defattr(-,root,root,-)
