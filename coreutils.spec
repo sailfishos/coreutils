@@ -1,7 +1,7 @@
 Summary: The GNU core utilities: a set of tools commonly used in shell scripts
 Name:    coreutils
 Version: 6.9
-Release: 14
+Release: 15
 License: GPLv2+
 Epoch: 1
 Group:   System Environment/Base
@@ -70,6 +70,9 @@ Conflicts: tetex < 1.0.7-66
 
 # su moved to util-linux in 2.22.2
 Conflicts: util-linux < 2.22.2
+
+# To allow selecting GNU version of coreutils
+Provides: gnu-coreutils
 
 %description
 These are the GNU core utilities.  This package is the combination of
