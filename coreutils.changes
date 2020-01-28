@@ -1,3 +1,6 @@
+* Tue Jan 28 2020 Tomi Leppanen <tomi.leppanen@jolla.com> - 6.9-15
+- [coreutils] Add provides gnu-coreutils. Contributes to JB#26141
+
 * Sun Jul 21 2019 Marko Saukko <marko.saukko@jolla.com> - 6.9-14
 - [coreutils] Drop cvs build dep. Contributes to JB#46334
 
