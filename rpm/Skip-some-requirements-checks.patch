@@ -1,0 +1,31 @@
+From 98577e7323d9f7b15b7d2ae09b2ba89624a23eae Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomi=20Lepp=C3=A4nen?= <tomi.leppanen@jolla.com>
+Date: Tue, 4 Feb 2020 14:15:09 +0200
+Subject: [PATCH] Skip some requirements checks
+
+---
+ bootstrap.conf | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/bootstrap.conf b/bootstrap.conf
+index 49261524a..6d536dd82 100644
+--- a/bootstrap.conf
++++ b/bootstrap.conf
+@@ -339,13 +339,11 @@ automake   1.11.2
+ autopoint  0.19.2
+ bison      -
+ gettext    0.19.2
+-git        1.4.4
+ gperf      -
+ gzip       -
+-makeinfo   6.1
++makeinfo   4.13
+ patch      -
+ perl       5.5
+-rsync      -
+ tar        -
+ xz         -
+ "
+-- 
+2.24.1
+
