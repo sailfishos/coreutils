@@ -1,9 +1,8 @@
 Summary: The GNU core utilities: a set of tools commonly used in shell scripts
-Name:    coreutils
+Name:    gnu-coreutils
 Version: 8.31
 Release: 0
 License: GPLv3+
-Epoch: 1
 Url:     https://git.sailfishos.org/mer-core/coreutils
 Source0: ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
 # po files like they are shipped with coreutils-%%{version}
@@ -69,9 +68,6 @@ BuildRequires: gperf
 BuildRequires: bash, gzip, tar, xz
 BuildRequires: perl >= 5.5
 
-# Require a C library that doesn't put LC_TIME files in our way.
-Conflicts: glibc < 2.2
-
 Provides: mktemp
 Provides: fileutils = %{version}-%{release}
 Provides: sh-utils = %{version}-%{release}
@@ -82,14 +78,8 @@ Obsoletes: sh-utils <= 2.0.12
 Obsoletes: stat <= 3.3
 Obsoletes: textutils <= 2.0.21
 
-# readlink(1) moved here from tetex.
-Conflicts: tetex < 1.0.7-66
-
-# su moved to util-linux in 2.22.2
-Conflicts: util-linux < 2.22.2
-
-# To allow selecting GNU version of coreutils
-Provides: gnu-coreutils
+Provides: coreutils = 1:6.9+git1
+Obsoletes: coreutils < 1:6.9+git1
 
 %description
 These are the GNU core utilities.  This package is the combination of
@@ -97,8 +87,8 @@ the old GNU fileutils, sh-utils, and textutils packages.
 
 %package doc
 Summary:   Documentation for %{name}
-Requires:  %{name} = %{epoch}:%{version}-%{release}
-Obsoletes: coreutils-doc <= 1:6.9-15
+Requires:  %{name} = %{version}-%{release}
+Obsoletes: coreutils-doc < 1:6.9+git1
 
 %description doc
 Man and info pages for %{name}.
@@ -161,7 +151,8 @@ install -p -c -m644 %SOURCE102 $RPM_BUILD_ROOT%{_sysconfdir}/DIR_COLORS.xterm
 install -p -c -m644 %SOURCE105 $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/colorls.sh
 install -p -c -m644 %SOURCE106 $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/colorls.csh
 
-%find_lang %name
+%find_lang coreutils
+mv coreutils.lang %{name}.lang
 
 # (sb) Deal with Installed (but unpackaged) file(s) found
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
@@ -215,6 +206,6 @@ install -m0644 -t $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} \
 
 %files doc
 %defattr(-,root,root,-)
-%{_infodir}/%{name}.info.gz
+%{_infodir}/coreutils.info.gz
 %{_mandir}/man1/*
 %{_docdir}/%{name}-%{version}
