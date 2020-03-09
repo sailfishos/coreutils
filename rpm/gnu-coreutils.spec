@@ -50,7 +50,6 @@ Patch950: coreutils-selinux.patch
 Patch912: coreutils-overflow.patch
 
 Patch2020: Skip-some-requirements-checks.patch
-Patch2021: Do-not-fail-on-ENOENT-on-sb2.patch
 Patch2022: docs-should-say-var-run-uw-tmp-not-etc-uw-tmp.patch
 
 # For acl support
