@@ -64,7 +64,7 @@ BuildRequires: texinfo >= 4.3
 BuildRequires: autoconf >= 2.64
 BuildRequires: automake >= 1.11.2
 BuildRequires: gperf
-BuildRequires: bash, gzip, tar, xz
+BuildRequires: bash, gnu-gzip, tar, xz
 BuildRequires: perl >= 5.5
 
 Provides: mktemp
