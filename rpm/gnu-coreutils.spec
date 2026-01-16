@@ -3,7 +3,7 @@ Name:    gnu-coreutils
 Version: 8.31
 Release: 0
 License: GPLv3+
-Url:     https://git.sailfishos.org/mer-core/coreutils
+Url:     https://github.com/sailfishos/coreutils
 Source0: ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
 # po files like they are shipped with coreutils-%%{version}
 Source100:  po.tar.xz
@@ -134,15 +134,17 @@ make mandir=$RPM_BUILD_ROOT%{_mandir} install-man
 
 # let be compatible with old fileutils, sh-utils and textutils packages :
 mkdir -p $RPM_BUILD_ROOT{/bin,%_bindir,%_sbindir,/sbin}
-for f in basename cat chgrp chmod chown cp cut date dd df echo env false link ln ls mkdir mknod mktemp mv nice pwd rm rmdir sleep sort stty sync touch true uname unlink
+tools="basename cat chgrp chmod chown cp cut date dd df echo env false link ln ls mkdir mknod mktemp mv nice pwd rm rmdir sleep sort stty sync touch true uname unlink"
+for f in $tools
 do
     mv $RPM_BUILD_ROOT{%_bindir,/bin}/$f
 done
 
 # chroot was in /usr/sbin :
 mv $RPM_BUILD_ROOT{%_bindir,%_sbindir}/chroot
-# {cat,sort,cut} were previously moved from bin to /usr/bin and linked into
-for i in env cut; do ln -sf ../../bin/$i $RPM_BUILD_ROOT/usr/bin; done
+for i in $tools
+    do ln -sf ../../bin/$i $RPM_BUILD_ROOT/usr/bin
+done
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/profile.d
 install -p -c -m644 %SOURCE101 $RPM_BUILD_ROOT%{_sysconfdir}/DIR_COLORS
@@ -164,7 +166,6 @@ install -m0644 -t $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} \
 %lang_package
 
 %files
-%defattr(-,root,root,-)
 %{_sysconfdir}/DIR_COLORS*
 %{_sysconfdir}/profile.d/*
 %license COPYING
@@ -204,7 +205,6 @@ install -m0644 -t $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version} \
 %_sbindir/chroot
 
 %files doc
-%defattr(-,root,root,-)
 %{_infodir}/coreutils.info.gz
 %{_mandir}/man1/*
 %{_docdir}/%{name}-%{version}
